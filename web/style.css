@@ -169,12 +169,6 @@ legend { font-size: var(--text-sm); color: var(--muted); margin-bottom: var(--sp
 }
 .tabs button[aria-selected="true"] { background: var(--card); color: var(--text); font-weight: 600; }
 
-/* ---------------------------------------------------------------- Legende */
-
-.legend { display: flex; flex-wrap: wrap; gap: var(--sp-4) var(--sp-16); margin: var(--sp-16) 0; color: var(--muted); }
-.legend span { display: inline-flex; align-items: center; gap: var(--sp-4); }
-.sw { display: inline-block; width: var(--sp-16); height: var(--sp-16); border-radius: 4px; border: 1px solid var(--line); }
-
 /* -------------------------------------------------------------- Pinsel */
 
 .brushes { display: flex; flex-wrap: wrap; gap: var(--sp-8); }
@@ -265,9 +259,6 @@ legend { font-size: var(--text-sm); color: var(--muted); margin-bottom: var(--sp
 .cell.partial { background: var(--partial); }
 .cell.blocked { background: var(--blocked); border-color: var(--blocked); }
 
-.sw.l3 { background: var(--l3); border-color: var(--l3); }
-.sw.l2 { background: var(--l2); border-color: var(--l2); }
-.sw.lx { background: var(--lx); border-color: var(--lx); }
 
 .tile {
   display: inline-flex;
