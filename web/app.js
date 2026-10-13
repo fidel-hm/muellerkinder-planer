@@ -235,7 +235,7 @@ function renderBest() {
   found.sort((a, b) => b.min - a.min || b.sum - a.sum || a.day.localeCompare(b.day) || a.half - b.half);
 
   if (!found.length) {
-    el('best').innerHTML = '<p class="muted small">Noch keine Tageshälfte, an der alle eingetragen haben, dass sie können.</p>';
+    el('best').innerHTML = '';
     return;
   }
   el('best').innerHTML = '<h2>Beste Termine</h2><div class="chips">' + found.slice(0, 6).map((f) =>

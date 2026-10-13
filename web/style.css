@@ -265,10 +265,9 @@ legend { font-size: var(--text-sm); color: var(--muted); margin-bottom: var(--sp
 .cell.partial { background: var(--partial); }
 .cell.blocked { background: var(--blocked); border-color: var(--blocked); }
 
-.sw.all3 { background: var(--all3); border-color: var(--l3); }
-.sw.all2 { background: var(--all2); border-color: var(--l2); }
-.sw.partial { background: var(--partial); }
-.sw.blocked { background: var(--blocked); }
+.sw.l3 { background: var(--l3); border-color: var(--l3); }
+.sw.l2 { background: var(--l2); border-color: var(--l2); }
+.sw.lx { background: var(--lx); border-color: var(--lx); }
 
 .tile {
   display: inline-flex;
