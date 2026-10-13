@@ -1,7 +1,7 @@
 # Müllerkinder-Planer
 
 Gemeinsame Termine für uns drei Geschwister finden. Jede Person trägt pro Tageshälfte
-(Vormittag, Nachmittag, Abend) ein, wie gut es passt: **sehr gut / gut / mittel** oder
+(Vormittag, Nachmittag, Abend) ein, wie gut es passt: **gut / mittel / schlecht** oder
 **kann nicht**. Die Übersicht zeigt auf einen Blick, wann alle können, und listet die besten Termine.
 
 - **Frontend**: statische Seite auf GitHub Pages (`web/`), ohne Build-Schritt und ohne Framework.
@@ -12,7 +12,7 @@ Gemeinsame Termine für uns drei Geschwister finden. Jede Person trägt pro Tage
 
 | Was | Wo | Beispiel |
 |---|---|---|
-| Stufe pro Tageshälfte | Tab **Eintragen**, antippen oder seitlich ziehen | Sa Abend: sehr gut |
+| Stufe pro Tageshälfte | Tab **Eintragen**, antippen oder seitlich ziehen | Sa Abend: gut |
 | Notiz zu einer Tageshälfte | Pinsel **Notiz** | „nur bis 21 Uhr“ |
 | Ganze Tage blockiert | Tab **Urlaub & Regeln** | 27.–31.10. Urlaub |
 | Wiederkehrende Regel | Tab **Urlaub & Regeln** | Mo–Fr vormittags: Arbeit (Blocker) · abends: nur bis 21 Uhr (Hinweis) |
@@ -23,7 +23,7 @@ Wer an einem Arbeitstag ausnahmsweise frei hat, trägt den Vormittag einfach ein
 **Gesamtbild einer Tageshälfte:**
 
 - Ein einziges „kann nicht“ macht sie grau schraffiert.
-- Haben alle eingetragen, dass sie können, zählt die schlechteste Stufe (alle sehr gut / gut / mittel).
+- Haben alle eingetragen, dass sie können, zählt die schlechteste Stufe (alle gut / mittel / schlecht).
 - Sonst steht dort „noch nicht alle“. Nichts eintragen heißt also nicht „kann“.
 
 Ein blauer Punkt oben rechts zeigt, dass es zu dieser Tageshälfte einen Hinweis gibt. Antippen öffnet die Details.

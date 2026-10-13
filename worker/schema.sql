@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 -- Eine Tageshälfte einer Person. half: 0 = Vormittag, 1 = Nachmittag, 2 = Abend.
--- level: -1 = Blocker, 1 = mittel, 2 = gut, 3 = sehr gut.
+-- level: -1 = Blocker (kann nicht), 1 = schlecht, 2 = mittel, 3 = gut.
 -- Eine Zeile ohne Level, aber mit Notiz, ist nicht erlaubt: Notizen hängen an einem Eintrag.
 CREATE TABLE IF NOT EXISTS slots (
   user_id    INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,

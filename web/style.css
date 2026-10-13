@@ -21,9 +21,9 @@
   --radius: 10px;
 
   /* Stufen einer Person */
-  --l3: #2b8a3e;
-  --l2: #69db7c;
-  --l1: #ffd43b;
+  --l3: #2f9e44;
+  --l2: #fcc419;
+  --l1: #fd7e14;
   --lx: #e03131;
 
   /* Gesamtbild einer Tageshaelfte */
@@ -46,8 +46,8 @@
     --error: #e07070;
 
     --l3: #51cf66;
-    --l2: #2f9e44;
-    --l1: #e3b341;
+    --l2: #e3b341;
+    --l1: #f08c3c;
     --lx: #e07070;
 
     --all3: #2f9e44;

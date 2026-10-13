@@ -4,7 +4,7 @@ const API = (window.PLANER_API || '').replace(/\/+$/, '');
 const TOKEN_KEY = 'planer.token';
 const HALVES = ['Vormittag', 'Nachmittag', 'Abend'];
 const WEEKDAYS = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
-const LEVEL_LABEL = { 3: 'sehr gut', 2: 'gut', 1: 'mittel', '-1': 'kann nicht' };
+const LEVEL_LABEL = { 3: 'gut', 2: 'mittel', 1: 'schlecht', '-1': 'kann nicht' };
 const POLL_MS = 60000;
 
 const el = (id) => document.getElementById(id);
