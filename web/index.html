@@ -39,19 +39,19 @@
     <div id="tab-overview">
       <div id="best"></div>
       <div class="legend small">
-        <span><i class="sw all3"></i>alle, gut</span>
-        <span><i class="sw all2"></i>alle, mittel</span>
-        <span><i class="sw partial"></i>noch nicht alle</span>
         <span><i class="sw blocked"></i>jemand hat schlecht</span>
+        <span><i class="sw all2"></i>alle, mittel</span>
+        <span><i class="sw all3"></i>alle, gut</span>
+        <span><i class="sw partial"></i>noch nicht alle</span>
       </div>
     </div>
 
     <!-- Eintragen: eigene Tageshaelften malen -->
     <div id="tab-edit" hidden>
       <div class="brushes" role="radiogroup" aria-label="Was eintragen?">
-        <button type="button" data-brush="3" class="b3" aria-checked="true" role="radio">gut</button>
-        <button type="button" data-brush="2" class="b2" aria-checked="false" role="radio">mittel</button>
         <button type="button" data-brush="-1" class="bx" aria-checked="false" role="radio">schlecht</button>
+        <button type="button" data-brush="2" class="b2" aria-checked="false" role="radio">mittel</button>
+        <button type="button" data-brush="3" class="b3" aria-checked="true" role="radio">gut</button>
         <button type="button" data-brush="clear" class="bc" aria-checked="false" role="radio">löschen</button>
         <button type="button" data-brush="note" class="bn" aria-checked="false" role="radio">Notiz</button>
       </div>

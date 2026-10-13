@@ -26,11 +26,7 @@
   --lx: #e03131;
 
   /* Gesamtbild einer Tageshaelfte */
-  --all3: #2b8a3e;
-  --all2: #69c27b;
   --partial: #f1efe9;
-  --blocked: #e9e6e0;
-  --hatch: #d6d2c9;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -47,12 +43,15 @@
     --l2: #e3b341;
     --lx: #e07070;
 
-    --all3: #2f9e44;
-    --all2: #2b6e3a;
     --partial: #26282b;
-    --blocked: #1d1e20;
-    --hatch: #2c2e31;
   }
+}
+
+/* Gesamtbild einer Tageshaelfte: getoente Ampelfarben */
+:root {
+  --all3: color-mix(in srgb, var(--l3) 45%, var(--card));
+  --all2: color-mix(in srgb, var(--l2) 45%, var(--card));
+  --blocked: color-mix(in srgb, var(--lx) 30%, var(--card));
 }
 
 * { box-sizing: border-box; }
@@ -260,15 +259,16 @@ legend { font-size: var(--text-sm); color: var(--muted); margin-bottom: var(--sp
 }
 
 /* Uebersicht: Hintergrund = Gesamtbild, Balken = jede Person */
-.cell.all3 { background: var(--all3); border-color: var(--all3); }
-.cell.all2 { background: var(--all2); border-color: var(--all2); }
+/* Ampel wie die Stufen selbst, als Toenung, damit die Kacheln darauf lesbar bleiben. */
+.cell.all3 { background: var(--all3); border-color: var(--l3); }
+.cell.all2 { background: var(--all2); border-color: var(--l2); }
 .cell.partial { background: var(--partial); }
-.cell.blocked { background: repeating-linear-gradient(135deg, var(--blocked) 0 6px, var(--hatch) 6px 8px); }
+.cell.blocked { background: var(--blocked); border-color: var(--blocked); }
 
-.sw.all3 { background: var(--all3); }
-.sw.all2 { background: var(--all2); }
+.sw.all3 { background: var(--all3); border-color: var(--l3); }
+.sw.all2 { background: var(--all2); border-color: var(--l2); }
 .sw.partial { background: var(--partial); }
-.sw.blocked { background: repeating-linear-gradient(135deg, var(--blocked) 0 3px, var(--hatch) 3px 5px); }
+.sw.blocked { background: var(--blocked); }
 
 .tile {
   display: inline-flex;
@@ -286,7 +286,7 @@ legend { font-size: var(--text-sm); color: var(--muted); margin-bottom: var(--sp
 .tile.l2 { background: var(--l2); color: #1c1b19; }
 .tile.lx { background: var(--lx); color: #fff; }
 .tile.ln { border: 1px dashed var(--muted); color: var(--muted); }
-.cell.all3 .tile, .cell.all2 .tile { box-shadow: 0 0 0 1px rgba(255, 255, 255, .6); }
+.cell.all3 .tile, .cell.all2 .tile, .cell.blocked .tile { box-shadow: 0 0 0 1px var(--card); }
 
 .dot {
   position: absolute;
@@ -324,8 +324,8 @@ legend { font-size: var(--text-sm); color: var(--muted); margin-bottom: var(--sp
 #best h2 { margin-top: 0; }
 .chips { display: flex; flex-wrap: wrap; gap: var(--sp-8); }
 .chip { font-size: var(--text-sm); color: #fff; padding: var(--sp-4) var(--sp-12); }
-.chip.all3 { background: var(--all3); }
-.chip.all2 { background: var(--all2); color: #1c1b19; }
+.chip.all3 { background: var(--l3); }
+.chip.all2 { background: var(--l2); color: #1c1b19; }
 
 /* ------------------------------------------------------------------ Listen */
 

@@ -22,7 +22,7 @@ Wer an einem Arbeitstag ausnahmsweise frei hat, trägt den Vormittag einfach ein
 
 **Gesamtbild einer Tageshälfte:**
 
-- Ein einziges „schlecht“ (auch aus Urlaub oder Regel) macht sie grau schraffiert.
+- Ein einziges „schlecht“ (auch aus Urlaub oder Regel) färbt sie rot.
 - Haben alle eingetragen, dass sie können, zählt die schlechtere Stufe (alle gut / alle mittel).
 - Sonst steht dort „noch nicht alle“. Nichts eintragen heißt also nicht „kann“.
 
