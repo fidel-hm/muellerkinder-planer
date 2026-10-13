@@ -25,6 +25,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      # Commit-Kennung an CSS und JS haengen, damit kein Browser nach einem Update
+      # neue index.html mit alten, noch zwischengespeicherten Dateien mischt.
+      - run: sed -i "s/__VERSION__/${GITHUB_SHA::7}/g" web/index.html
       - uses: actions/upload-pages-artifact@v3
         with:
           path: web
