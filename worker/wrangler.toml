@@ -11,4 +11,4 @@ ALLOWED_ORIGIN = "https://fidel-hm.github.io"
 binding = "DB"
 database_name = "muellerkinder-planer"
 # Wird von "wrangler d1 create muellerkinder-planer" ausgegeben und hier eingetragen:
-database_id = "HIER_DIE_DATABASE_ID_EINTRAGEN"
+database_id = "a813d443-1874-4449-8d61-23446afc3118"
