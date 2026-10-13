@@ -23,13 +23,11 @@
   /* Stufen einer Person */
   --l3: #2f9e44;
   --l2: #fcc419;
-  --l1: #fd7e14;
   --lx: #e03131;
 
   /* Gesamtbild einer Tageshaelfte */
   --all3: #2b8a3e;
   --all2: #69c27b;
-  --all1: #c3e6a7;
   --partial: #f1efe9;
   --blocked: #e9e6e0;
   --hatch: #d6d2c9;
@@ -47,12 +45,10 @@
 
     --l3: #51cf66;
     --l2: #e3b341;
-    --l1: #f08c3c;
     --lx: #e07070;
 
     --all3: #2f9e44;
     --all2: #2b6e3a;
-    --all1: #2a4a31;
     --partial: #26282b;
     --blocked: #1d1e20;
     --hatch: #2c2e31;
@@ -202,7 +198,6 @@ legend { font-size: var(--text-sm); color: var(--muted); margin-bottom: var(--sp
 .brushes button[aria-checked="true"] { border-color: var(--text); box-shadow: inset 0 0 0 1px var(--text); }
 .brushes .b3 { --c: var(--l3); }
 .brushes .b2 { --c: var(--l2); }
-.brushes .b1 { --c: var(--l1); }
 .brushes .bx { --c: var(--lx); }
 .brushes .bc { --c: transparent; }
 .brushes .bc::before { border: 1px dashed var(--muted); }
@@ -267,13 +262,11 @@ legend { font-size: var(--text-sm); color: var(--muted); margin-bottom: var(--sp
 /* Uebersicht: Hintergrund = Gesamtbild, Balken = jede Person */
 .cell.all3 { background: var(--all3); border-color: var(--all3); }
 .cell.all2 { background: var(--all2); border-color: var(--all2); }
-.cell.all1 { background: var(--all1); border-color: var(--all1); }
 .cell.partial { background: var(--partial); }
 .cell.blocked { background: repeating-linear-gradient(135deg, var(--blocked) 0 6px, var(--hatch) 6px 8px); }
 
 .sw.all3 { background: var(--all3); }
 .sw.all2 { background: var(--all2); }
-.sw.all1 { background: var(--all1); }
 .sw.partial { background: var(--partial); }
 .sw.blocked { background: repeating-linear-gradient(135deg, var(--blocked) 0 3px, var(--hatch) 3px 5px); }
 
@@ -291,7 +284,6 @@ legend { font-size: var(--text-sm); color: var(--muted); margin-bottom: var(--sp
 }
 .tile.l3 { background: var(--l3); color: #fff; }
 .tile.l2 { background: var(--l2); color: #1c1b19; }
-.tile.l1 { background: var(--l1); color: #1c1b19; }
 .tile.lx { background: var(--lx); color: #fff; }
 .tile.ln { border: 1px dashed var(--muted); color: var(--muted); }
 .cell.all3 .tile, .cell.all2 .tile { box-shadow: 0 0 0 1px rgba(255, 255, 255, .6); }
@@ -311,7 +303,6 @@ legend { font-size: var(--text-sm); color: var(--muted); margin-bottom: var(--sp
 #grid.editing .cell { align-items: center; cursor: pointer; }
 .cell.l3 { background: var(--l3); border-color: var(--l3); color: #fff; }
 .cell.l2 { background: var(--l2); border-color: var(--l2); color: #1c1b19; }
-.cell.l1 { background: var(--l1); border-color: var(--l1); color: #1c1b19; }
 .cell.lx { background: var(--lx); border-color: var(--lx); color: #fff; }
 /* Aus Urlaub oder Regel abgeleitet: blasser, mit Schraffur */
 .cell.derived { opacity: .55; background-image: repeating-linear-gradient(135deg, transparent 0 6px, rgba(255,255,255,.35) 6px 8px); }
@@ -335,7 +326,6 @@ legend { font-size: var(--text-sm); color: var(--muted); margin-bottom: var(--sp
 .chip { font-size: var(--text-sm); color: #fff; padding: var(--sp-4) var(--sp-12); }
 .chip.all3 { background: var(--all3); }
 .chip.all2 { background: var(--all2); color: #1c1b19; }
-.chip.all1 { background: var(--all1); color: #1c1b19; }
 
 /* ------------------------------------------------------------------ Listen */
 
@@ -351,7 +341,6 @@ legend { font-size: var(--text-sm); color: var(--muted); margin-bottom: var(--sp
 .pill { display: inline-block; padding: 0 var(--sp-8); border-radius: 999px; font-size: var(--text-xs); }
 .pill.l3 { background: var(--l3); color: #fff; }
 .pill.l2 { background: var(--l2); color: #1c1b19; }
-.pill.l1 { background: var(--l1); color: #1c1b19; }
 .pill.lx { background: var(--lx); color: #fff; }
 
 .avatar {

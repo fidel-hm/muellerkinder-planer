@@ -1,8 +1,8 @@
 # Müllerkinder-Planer
 
 Gemeinsame Termine für uns drei Geschwister finden. Jede Person trägt pro Tageshälfte
-(Vormittag, Nachmittag, Abend) ein, wie gut es passt: **gut / mittel / schlecht** oder
-**kann nicht**. Die Übersicht zeigt auf einen Blick, wann alle können, und listet die besten Termine.
+(Vormittag, Nachmittag, Abend) ein, wie gut es passt: **gut / mittel / schlecht**.
+„Schlecht“ ist ein Blocker: Die Tageshälfte fällt dann für alle weg. Die Übersicht zeigt auf einen Blick, wann alle können, und listet die besten Termine.
 
 - **Frontend**: statische Seite auf GitHub Pages (`web/`), ohne Build-Schritt und ohne Framework.
 - **Backend**: Cloudflare Worker mit D1-Datenbank (`worker/`). Architektur und Anmeldung wie beim Freundeskalender (`../Kalender`).
@@ -22,8 +22,8 @@ Wer an einem Arbeitstag ausnahmsweise frei hat, trägt den Vormittag einfach ein
 
 **Gesamtbild einer Tageshälfte:**
 
-- Ein einziges „kann nicht“ macht sie grau schraffiert.
-- Haben alle eingetragen, dass sie können, zählt die schlechteste Stufe (alle gut / mittel / schlecht).
+- Ein einziges „schlecht“ (auch aus Urlaub oder Regel) macht sie grau schraffiert.
+- Haben alle eingetragen, dass sie können, zählt die schlechtere Stufe (alle gut / alle mittel).
 - Sonst steht dort „noch nicht alle“. Nichts eintragen heißt also nicht „kann“.
 
 Ein blauer Punkt oben rechts zeigt, dass es zu dieser Tageshälfte einen Hinweis gibt. Antippen öffnet die Details.
@@ -85,7 +85,7 @@ Alle Endpunkte erwarten `Authorization: Bearer <token>`. Jede Person ändert nur
 |---|---|---|
 | `GET` | `/api/state` | Personen, Tageshälften ab vor 7 Tagen, Blocker, Regeln |
 | `PATCH` | `/api/me` | Name und/oder Farbe |
-| `PUT` | `/api/slots` | `{"changes":[{"day":"2026-10-17","half":2,"level":3,"note":"…"}]}` · `level`: -1, 1, 2, 3 oder `null` (löschen) · ohne `note` bleibt die alte Notiz |
+| `PUT` | `/api/slots` | `{"changes":[{"day":"2026-10-17","half":2,"level":3,"note":"…"}]}` · `level`: -1 (schlecht), 2, 3 oder `null` (löschen) · ohne `note` bleibt die alte Notiz |
 | `POST` | `/api/blocks` | `{"from_day","to_day","label"}` |
 | `DELETE` | `/api/blocks/:id` | eigenen Blocker löschen |
 | `POST` | `/api/rules` | `{"weekdays":"1111100","halves":"110","kind":"block"\|"note","text"}` (Masken: Mo..So, Vormittag..Abend) |

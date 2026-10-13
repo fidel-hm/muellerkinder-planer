@@ -4,7 +4,7 @@ const API = (window.PLANER_API || '').replace(/\/+$/, '');
 const TOKEN_KEY = 'planer.token';
 const HALVES = ['Vormittag', 'Nachmittag', 'Abend'];
 const WEEKDAYS = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
-const LEVEL_LABEL = { 3: 'gut', 2: 'mittel', 1: 'schlecht', '-1': 'kann nicht' };
+const LEVEL_LABEL = { 3: 'gut', 2: 'mittel', '-1': 'schlecht' };
 const POLL_MS = 60000;
 
 const el = (id) => document.getElementById(id);
@@ -257,7 +257,7 @@ function renderLists() {
   el('rules').innerHTML = state.rules.map((r) => {
     const days = describeMask(r.weekdays, WEEKDAYS);
     const halves = [...r.halves].map((on, i) => on === '1' ? HALVES[i] : null).filter(Boolean).join(', ');
-    const kind = r.kind === 'block' ? 'kann nicht' : 'Hinweis';
+    const kind = r.kind === 'block' ? 'schlecht' : 'Hinweis';
     return `<li>${avatar(byId.get(r.user_id) || {})} <span>${days}, ${halves}: <em>${kind}</em>` +
       `${r.text ? ` – ${escapeHtml(r.text)}` : ''}</span>${del('rules', r)}</li>`;
   }).join('') || '<li class="muted small">Keine Regeln.</li>';

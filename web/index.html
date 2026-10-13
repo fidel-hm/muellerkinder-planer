@@ -41,9 +41,8 @@
       <div class="legend small">
         <span><i class="sw all3"></i>alle, gut</span>
         <span><i class="sw all2"></i>alle, mittel</span>
-        <span><i class="sw all1"></i>alle, schlecht</span>
         <span><i class="sw partial"></i>noch nicht alle</span>
-        <span><i class="sw blocked"></i>jemand kann nicht</span>
+        <span><i class="sw blocked"></i>jemand hat schlecht</span>
       </div>
     </div>
 
@@ -52,8 +51,7 @@
       <div class="brushes" role="radiogroup" aria-label="Was eintragen?">
         <button type="button" data-brush="3" class="b3" aria-checked="true" role="radio">gut</button>
         <button type="button" data-brush="2" class="b2" aria-checked="false" role="radio">mittel</button>
-        <button type="button" data-brush="1" class="b1" aria-checked="false" role="radio">schlecht</button>
-        <button type="button" data-brush="-1" class="bx" aria-checked="false" role="radio">kann nicht</button>
+        <button type="button" data-brush="-1" class="bx" aria-checked="false" role="radio">schlecht</button>
         <button type="button" data-brush="clear" class="bc" aria-checked="false" role="radio">löschen</button>
         <button type="button" data-brush="note" class="bn" aria-checked="false" role="radio">Notiz</button>
       </div>
@@ -95,7 +93,7 @@
         </fieldset>
         <fieldset>
           <legend>Art</legend>
-          <label class="check"><input type="radio" name="kind" value="block" checked> Blocker: kann da nicht</label>
+          <label class="check"><input type="radio" name="kind" value="block" checked> Blocker: passt da schlecht</label>
           <label class="check"><input type="radio" name="kind" value="note"> Hinweis: kann, aber mit Einschränkung</label>
         </fieldset>
         <label>Text <input name="text" placeholder="Arbeit / nur bis 21 Uhr" maxlength="80"></label>

@@ -12,7 +12,7 @@ const PALETTE = [
 ];
 const COLOR_RE = /^#[0-9a-f]{6}$/;
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
-const LEVELS = [-1, 1, 2, 3];
+const LEVELS = [-1, 2, 3]; // schlecht (Blocker), mittel, gut
 const MAX_CHANGES = 400; // eine Malbewegung ueber mehrere Wochen bleibt deutlich darunter
 
 // ---------------------------------------------------------------- Hilfsmittel
