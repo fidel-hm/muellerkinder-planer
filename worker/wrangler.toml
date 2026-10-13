@@ -1,0 +1,14 @@
+name = "muellerkinder-planer"
+main = "src/index.js"
+compatibility_date = "2024-09-23"
+
+[vars]
+# Auf die eigene Pages-Adresse eingeschraenkt. Fuer lokale Entwicklung gilt
+# stattdessen worker/.dev.vars (siehe README).
+ALLOWED_ORIGIN = "https://fidel-hm.github.io"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "muellerkinder-planer"
+# Wird von "wrangler d1 create muellerkinder-planer" ausgegeben und hier eingetragen:
+database_id = "HIER_DIE_DATABASE_ID_EINTRAGEN"

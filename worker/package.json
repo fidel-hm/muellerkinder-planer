@@ -1,0 +1,17 @@
+{
+  "name": "muellerkinder-planer-worker",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:init": "wrangler d1 execute muellerkinder-planer --remote --file schema.sql",
+    "db:init:local": "wrangler d1 execute muellerkinder-planer --local --file schema.sql"
+  },
+  "devDependencies": {
+    "wrangler": "^4.47.0"
+  }
+}

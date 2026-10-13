@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Müllerkinder-Planer</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗓️</text></svg>">
+</head>
+<body>
+
+<header>
+  <h1>Müllerkinder</h1>
+  <button type="button" id="whoami" hidden></button>
+</header>
+
+<main>
+  <!-- Solange kein gueltiges Token im Browser liegt -->
+  <section id="gate" hidden>
+    <h2>Willkommen</h2>
+    <p id="gate-text">Du brauchst deinen persönlichen Einladungslink. Frag in der Familiengruppe nach.</p>
+    <form id="gate-form">
+      <label>Einladungslink einfügen
+        <input name="link" placeholder="https://…#t=…" required></label>
+      <div class="row actions"><button type="submit">Anmelden</button></div>
+      <p class="error" id="gate-error" hidden></p>
+    </form>
+  </section>
+
+  <section id="app" hidden>
+    <nav class="tabs" role="tablist">
+      <button type="button" role="tab" data-tab="overview" aria-selected="true">Übersicht</button>
+      <button type="button" role="tab" data-tab="edit" aria-selected="false">Eintragen</button>
+      <button type="button" role="tab" data-tab="rules" aria-selected="false">Urlaub &amp; Regeln</button>
+    </nav>
+
+    <!-- Uebersicht: alle zusammen -->
+    <div id="tab-overview">
+      <div id="best"></div>
+      <div class="legend small">
+        <span><i class="sw all3"></i>alle, sehr gut</span>
+        <span><i class="sw all2"></i>alle, gut</span>
+        <span><i class="sw all1"></i>alle, mittel</span>
+        <span><i class="sw partial"></i>noch nicht alle</span>
+        <span><i class="sw blocked"></i>jemand kann nicht</span>
+      </div>
+    </div>
+
+    <!-- Eintragen: eigene Tageshaelften malen -->
+    <div id="tab-edit" hidden>
+      <div class="brushes" role="radiogroup" aria-label="Was eintragen?">
+        <button type="button" data-brush="3" class="b3" aria-checked="true" role="radio">sehr gut</button>
+        <button type="button" data-brush="2" class="b2" aria-checked="false" role="radio">gut</button>
+        <button type="button" data-brush="1" class="b1" aria-checked="false" role="radio">mittel</button>
+        <button type="button" data-brush="-1" class="bx" aria-checked="false" role="radio">kann nicht</button>
+        <button type="button" data-brush="clear" class="bc" aria-checked="false" role="radio">löschen</button>
+        <button type="button" data-brush="note" class="bn" aria-checked="false" role="radio">Notiz</button>
+      </div>
+      <p class="small muted hint">Antippen oder seitlich über einen Tag ziehen. Der Wochentag links setzt den ganzen Tag.
+        Nochmal tippen auf dieselbe Stufe nimmt sie wieder weg.</p>
+    </div>
+
+    <div id="grid-wrap">
+      <div class="grid-head"><span></span><span>Vormittag</span><span>Nachmittag</span><span>Abend</span></div>
+      <div id="grid"></div>
+      <div class="more"><button type="button" class="ghost" id="more">4 Wochen mehr</button></div>
+    </div>
+
+    <!-- Urlaub & Regeln -->
+    <div id="tab-rules" hidden>
+      <h2>Urlaub und andere ganze Tage</h2>
+      <p class="small muted">Für zusammenhängende Tage, an denen du gar nicht kannst.</p>
+      <form id="block-form" class="card">
+        <div class="row">
+          <label>Von <input type="date" name="from_day" required></label>
+          <label>Bis <input type="date" name="to_day"></label>
+        </div>
+        <label>Bezeichnung (optional) <input name="label" placeholder="Urlaub" maxlength="80"></label>
+        <div class="row actions"><button type="submit">Eintragen</button></div>
+      </form>
+      <ul class="list" id="blocks"></ul>
+
+      <h2>Regeln</h2>
+      <p class="small muted">Wiederkehrendes, z. B. „Mo–Fr vormittags Arbeit“ als Blocker
+        oder „abends nur bis 21 Uhr“ als Hinweis. Ein Eintrag im Kalender geht einer Regel vor.</p>
+      <form id="rule-form" class="card">
+        <fieldset>
+          <legend>Wochentage</legend>
+          <div class="toggles" id="rule-days"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Tageshälften</legend>
+          <div class="toggles" id="rule-halves"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Art</legend>
+          <label class="check"><input type="radio" name="kind" value="block" checked> Blocker: kann da nicht</label>
+          <label class="check"><input type="radio" name="kind" value="note"> Hinweis: kann, aber mit Einschränkung</label>
+        </fieldset>
+        <label>Text <input name="text" placeholder="Arbeit / nur bis 21 Uhr" maxlength="80"></label>
+        <div class="row actions"><button type="submit">Regel anlegen</button></div>
+      </form>
+      <ul class="list" id="rules"></ul>
+    </div>
+
+    <p id="status" class="small muted" aria-live="polite"></p>
+  </section>
+</main>
+
+<!-- Details einer Tageshaelfte in der Uebersicht -->
+<dialog id="detail">
+  <div class="dialog-head">
+    <h2 id="detail-title"></h2>
+    <button type="button" class="icon" data-close aria-label="Schließen">×</button>
+  </div>
+  <ul class="list" id="detail-list"></ul>
+</dialog>
+
+<!-- Profil -->
+<dialog id="profile">
+  <div class="dialog-head">
+    <h2>Mein Profil</h2>
+    <button type="button" class="icon" data-close aria-label="Schließen">×</button>
+  </div>
+  <form id="profile-form">
+    <label>Name <input name="name" maxlength="60" required></label>
+    <p class="small muted">Farbe</p>
+    <div class="palette" id="palette"></div>
+    <div class="row actions"><button type="submit">Speichern</button></div>
+  </form>
+
+  <h3 class="sub">Weiteres Gerät</h3>
+  <p class="small muted">Diesen Link auf dem Handy öffnen, dann bist du dort auch angemeldet. Nicht weitergeben.</p>
+  <div class="copy"><input id="my-link" readonly><button type="button" class="ghost" id="my-link-copy">Kopieren</button></div>
+
+  <div id="admin" hidden>
+    <h3 class="sub">Personen</h3>
+    <ul id="users"></ul>
+    <form id="user-form" class="row">
+      <label>Neue Person <input name="name" maxlength="60" required></label>
+      <div class="row actions"><button type="submit">Anlegen</button></div>
+    </form>
+  </div>
+</dialog>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
