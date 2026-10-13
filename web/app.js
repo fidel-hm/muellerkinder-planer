@@ -414,31 +414,65 @@ async function editNote(cell) {
 
 const grid = el('grid');
 
+/** Ab dieser Bewegung in Pixeln steht fest, ob der Finger scrollt oder malt. */
+const TOUCH_SLOP = 10;
+
 grid.addEventListener('pointerdown', (e) => {
   if (tab !== 'edit' || brush === 'note') return;
   const cell = e.target.closest('.cell');
-  const label = e.target.closest('.label');
-  if (!cell && !label) return;
-  e.preventDefault();
+  if (!cell) return;
   stroke = { changes: [], done: new Set(), level: undefined };
-  if (label) {
-    // Wochentag antippen: alle drei Haelften auf einmal.
-    for (const c of grid.querySelectorAll(`.cell[data-day="${label.dataset.day}"]`)) paint(c);
-    finishStroke();
+  if (e.pointerType === 'touch') {
+    // Beim Aufsetzen noch nichts malen: das koennte der Anfang einer Scrollbewegung sein.
+    stroke.pending = { cell, x: e.clientX, y: e.clientY };
     return;
   }
+  e.preventDefault();
   paint(cell);
 });
 
 grid.addEventListener('pointermove', (e) => {
   if (!stroke) return;
+  if (stroke.pending) {
+    const dx = Math.abs(e.clientX - stroke.pending.x);
+    const dy = Math.abs(e.clientY - stroke.pending.y);
+    if (dy > TOUCH_SLOP && dy >= dx) {
+      stroke = null; // senkrecht: Scrollen, kein Eintrag
+      return;
+    }
+    if (dx <= TOUCH_SLOP) return;
+    const { cell } = stroke.pending; // waagerecht: ab jetzt wird gemalt
+    stroke.pending = null;
+    paint(cell);
+  }
   const cell = document.elementFromPoint(e.clientX, e.clientY)?.closest('.cell');
   if (cell && grid.contains(cell)) paint(cell);
 });
-window.addEventListener('pointerup', finishStroke);
-window.addEventListener('pointercancel', finishStroke);
+
+window.addEventListener('pointerup', () => {
+  // Ohne nennenswerte Bewegung losgelassen: ein Tipp.
+  if (stroke?.pending) {
+    const { cell } = stroke.pending;
+    stroke.pending = null;
+    paint(cell);
+  }
+  finishStroke();
+});
+window.addEventListener('pointercancel', () => {
+  // Der Browser hat die Geste als Scrollen uebernommen.
+  if (stroke?.pending) stroke = null;
+  finishStroke();
+});
 
 grid.addEventListener('click', (e) => {
+  // Wochentag antippen setzt alle drei Haelften. Ueber click, weil der nach Scrollen nicht ausloest.
+  const label = e.target.closest('.label');
+  if (label && tab === 'edit' && brush !== 'note') {
+    stroke = { changes: [], done: new Set(), level: undefined };
+    for (const c of grid.querySelectorAll(`.cell[data-day="${label.dataset.day}"]`)) paint(c);
+    finishStroke();
+    return;
+  }
   const cell = e.target.closest('.cell');
   if (!cell) return;
   if (tab === 'edit' && brush === 'note') editNote(cell);
